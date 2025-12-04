@@ -14,31 +14,23 @@ return new class extends Migration
         Schema::create('detalle_compras', function (Blueprint $table) {
             $table->id();
 
-            // Claves foráneas
+            
             $table->unsignedBigInteger('compra_id');
             $table->unsignedBigInteger('producto_id');
-
-            // Datos del detalle
-            $table->decimal('precio_unitario', 10, 2);
+            $table->decimal('precio_unitario', 20, 2);
             $table->integer('cantidad');
             $table->decimal('subtotal', 10, 2);
-
             $table->timestamps();
-
-            // Relaciones
             $table->foreign('compra_id')
                   ->references('id')->on('compras')
                   ->onDelete('cascade');
-
             $table->foreign('producto_id')
                   ->references('id')->on('productos')
                   ->onDelete('cascade');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+
     public function down(): void
     {
         Schema::dropIfExists('detalle_compras');

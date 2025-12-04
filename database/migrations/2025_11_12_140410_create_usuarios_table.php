@@ -17,16 +17,12 @@ return new class extends Migration
             $table->string('password');
             $table->string('nombres');
             $table->string('apellidos');
-            $table->string('rol')->default('usuario'); // por ejemplo: admin, usuario, etc.
-            $table->boolean('estado')->default(true);  // true = activo, false = inactivo
+            $table->string('rol')->default('usuario'); 
+            $table->boolean('estado')->default(true);  
             $table->timestamp('ultimo_acceso')->nullable();
-            $table->timestamps(); // created_at y updated_at
+            $table->timestamps(); 
         });
     }
-
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('usuarios');

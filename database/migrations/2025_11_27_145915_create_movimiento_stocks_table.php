@@ -13,35 +13,24 @@ return new class extends Migration
     {
         Schema::create('movimientos_stock', function (Blueprint $table) {
             $table->id();
-
-            // Producto
-            $table->unsignedBigInteger('producto_id');
-
-            // Tipo: entrada / salida
             $table->string('tipo_movimiento', 20);
-
-            // Cantidades
-            $table->integer('cantidad');
+            $table->unsignedBigInteger('producto_id');
             $table->integer('stock_anterior');
+            $table->integer('cantidad');
+            $table->string('motivo')
+            ->nullable();
+            $table->unsignedBigInteger('usuario_id')
+            ->nullable();
             $table->integer('stock_actual');
-
-            // Motivo
-            $table->string('motivo')->nullable();
-
-            // Usuario (nullable)
-            $table->unsignedBigInteger('usuario_id')->nullable();
-
-            // Polimórfico
-            $table->unsignedBigInteger('referencia_id')->nullable();
-            $table->string('referencia_tabla')->nullable();
-
-            // Fecha
-            $table->timestamp('fecha_movimiento')->useCurrent();
-
-            // FK
-            $table->foreign('producto_id')->references('id')->on('productos')->onDelete('cascade');
-
-            // ESTA ES LA CORRECCIÓN
+            $table->unsignedBigInteger('referencia_id')
+            ->nullable();
+            $table->string('referencia_tabla')
+            ->nullable();
+            $table->timestamp('fecha_movimiento')
+            ->useCurrent();
+            $table->foreign('producto_id')->references('id')
+            ->on('productos')
+            ->onDelete('cascade');
             $table->foreign('usuario_id')
                 ->references('id')->on('users')
                 ->onDelete('set null');

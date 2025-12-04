@@ -134,7 +134,7 @@
         <div class="top-gradient"></div>
         
         <h1 class="text-2xl font-bold text-white mb-6" style="background: linear-gradient(90deg, #60a5fa 0%, #a78bfa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
-            Registrar Nuevo Proveedor
+            Registrar  Proveedor
         </h1>
 
         <form action="{{ route('admin.proveedor.store') }}" method="POST" class="space-y-6">

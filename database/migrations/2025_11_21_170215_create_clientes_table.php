@@ -6,9 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+    
     public function up(): void
     {
         Schema::create('clientes', function (Blueprint $table) {
@@ -16,10 +14,8 @@ return new class extends Migration
 
             $table->string('tipo_documento', 20);
             $table->string('numero_documento', 20)->unique();
-
             $table->string('nombres', 120);
             $table->string('apellidos', 120);
-
             $table->string('email', 120)->nullable();
             $table->string('telefono', 20)->nullable();
             $table->string('direccion', 255)->nullable();
@@ -27,14 +23,10 @@ return new class extends Migration
 
             $table->boolean('estado')->default(1);
 
-            // timestamps del profesor
+            
             $table->timestamps();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('clientes');

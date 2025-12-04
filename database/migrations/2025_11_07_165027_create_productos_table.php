@@ -6,42 +6,34 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+   
     public function up(): void
     {
         Schema::create('productos', function (Blueprint $table) {
             $table->id();
-            // Clave foránea: Categoría
+            
             $table->unsignedBigInteger('categoria_id');
             $table->foreign('categoria_id')
                 ->references('id')
                 ->on('categorias')
-                ->onDelete('cascade'); // Si se borra la categoría, ¡adiós productos! 🗑️
-
-            // Clave foránea: Proveedor
+                ->onDelete('cascade'); 
             $table->unsignedBigInteger('proveedor_id');
             $table->foreign('proveedor_id')
                 ->references('id')
                 ->on('proveedores')
-                ->onDelete('cascade'); // Igual con proveedores 🏭
+                ->onDelete('cascade'); 
 
-            $table->string('nombre'); // Nombre del producto 📱
-            $table->text('descripcion')->nullable(); // Descripción (opcional) ✍️
-            $table->string('codigo_barra')->unique(); // Código único 📊
-            $table->decimal('precio_venta', 10, 2); // Ej: 999.99 💰
-            $table->decimal('precio_compra', 10, 2); // 💸
-            $table->integer('stock'); // Cantidad disponible 📦
-            $table->integer('stock_minimo'); // Alerta si baja de esto ⚠️
-            $table->boolean('estado')->default(true); // Activo/Inactivo ✅
+            $table->string('nombre'); 
+            $table->text('descripcion')->nullable(); 
+            $table->string('codigo_barra')->unique(); 
+            $table->decimal('precio_venta', 10, 2); 
+            $table->decimal('precio_compra', 10, 2); 
+            $table->integer('stock'); 
+            $table->integer('stock_minimo');
+            $table->boolean('estado')->default(true); 
             $table->timestamps();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('productos');

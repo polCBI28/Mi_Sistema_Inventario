@@ -95,7 +95,7 @@
     </style>
 </head>
 
-<div class="w-full py-8 px-4 sm:px-6 lg:px-8" style="background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%); min-height: 100vh;">
+<div class="w-full py-8 px-4 sm:px-6 lg:px-8" style="background: linear-gradient(135deg, #23448b 0%, #4946cc 100%); min-height: 100vh;">
     {{-- Alerta de Éxito --}}
     @if (session('success'))
         <script>

@@ -8,16 +8,17 @@ use App\Models\Categoria;
 use App\Http\Requests\ValidationProductoRequest;
 use App\Http\Requests\ValidationProductoUpdateRequest;
 use App\Models\Proveedore;
+use Illuminate\Http\RedirectResponse;
 
 class ProductoController extends Controller
 {
     /**
      * Muestra la lista de productos y el formulario de registro.
      */
-    public function index()
+    public function index(): \Illuminate\View\View
     {
-        $categorias = Categoria::all();      // Todas las categorías
-        $proveedores = Proveedore::all();     // Todos los proveedores
+        $categorias = Categoria::all();
+        $proveedores = Proveedore::all();
 
         return view('admin.producto.index', compact('categorias', 'proveedores'));
     }
@@ -25,7 +26,7 @@ class ProductoController extends Controller
     /**
      * Guarda un nuevo producto en la base de datos.
      */
-    public function store(ValidationProductoRequest $request)
+    public function store(ValidationProductoRequest $request): RedirectResponse
     {
         Producto::create($request->validated());
 
@@ -37,7 +38,7 @@ class ProductoController extends Controller
     /**
      * Actualiza la información de un producto existente.
      */
-    public function update(ValidationProductoUpdateRequest $request, string $id)
+    public function update(ValidationProductoUpdateRequest $request, int $id): RedirectResponse
     {
         $producto = Producto::findOrFail($id);
         $producto->update($request->validated());
@@ -50,7 +51,7 @@ class ProductoController extends Controller
     /**
      * Elimina un producto de la base de datos.
      */
-    public function destroy(string $id)
+    public function destroy(int $id): RedirectResponse
     {
         $producto = Producto::findOrFail($id);
         $producto->delete();

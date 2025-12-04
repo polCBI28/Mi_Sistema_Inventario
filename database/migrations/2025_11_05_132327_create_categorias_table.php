@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('categorias', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');          // Campo para el nombre de la categoría
-            $table->text('descripcion')->nullable(); // Campo de descripción, puede ser opcional
-            $table->string('estado')->default('activo'); // Campo para el estado (activo/inactivo)
-            $table->timestamps();              // Campos created_at y updated_at
+            $table->string('nombre');          
+            $table->text('descripcion')->nullable(); 
+            $table->string('estado')->default('activo'); 
+            $table->timestamps();              
         });
     }
 
